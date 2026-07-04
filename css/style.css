@@ -432,6 +432,8 @@ body[data-page="referanslar"] .references .section-title{color:var(--ink)}
   .about-list{grid-template-columns:1fr}
   .ref-grid{grid-template-columns:repeat(2,1fr)}
   .footer-grid{grid-template-columns:1fr}
+  .footer-bottom{flex-direction:column;align-items:flex-start;gap:12px;padding:26px 22px;text-align:left}
+  .footer-credit{margin-left:0}
   .contact-form{padding:26px}
   .hero-title{font-size:2.4rem}
 }

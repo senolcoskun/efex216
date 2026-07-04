@@ -61,7 +61,7 @@
       '<div class="container footer-bottom">' +
         "<span>© <span id=\"year\"></span> EFEX216 Mimarlık Hizmetleri. Tüm hakları saklıdır.</span>" +
         '<span class="footer-legal"><a href="#">Gizlilik</a> · <a href="#">Çerezler</a> · <a href="#">Aydınlatma Metni</a></span>' +
-        '<span class="footer-credit">Developed by <a href="#">Şenol Coşkun</a></span>' +
+        '<span class="footer-credit">Developed by <a href="https://senolcoskun.com" target="_blank" rel="noopener">Şenol Coşkun</a></span>' +
       "</div>" +
     "</footer>";
 

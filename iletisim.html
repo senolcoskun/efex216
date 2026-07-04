@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>İletişim — EFEX216 Exhibition Solutions</title>
+  <meta name="description" content="EFEX216 ile iletişime geçin: info@efex216.com, +90 532 286 42 50." />
+  <link rel="icon" href="img/logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Oranienbaum&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <script defer src="js/layout.js"></script>
+  <script defer src="js/main.js"></script>
+  <script defer src="js/i18n.js"></script>
+</head>
+<body data-page="iletisim" class="inner-page">
+
+  <div class="loader" id="loader" role="status" aria-label="Yükleniyor">
+    <div class="loader-box"><img src="img/logo-2026.svg" alt="EFEX216" class="loader-mark" /><span class="loader-shine" aria-hidden="true"></span></div>
+  </div>
+
+  <div id="header-mount"></div>
+
+  <section class="page-hero">
+    <div class="page-hero-media"><img src="img/img-hakkimizda.png" alt="EFEX216 iletişim" /></div>
+    <div class="page-hero-overlay"></div>
+    <div class="container">
+      <p class="section-eyebrow">İLETİŞİM</p>
+      <h1>Yeni projeleri<br />konuşalım.</h1>
+      <p class="breadcrumb"><a href="index.html">Ana Sayfa</a> / İletişim</p>
+    </div>
+  </section>
+
+  <section class="contact-page">
+    <div class="container contact-grid">
+      <div class="contact-info">
+        <p class="section-eyebrow">BİZE ULAŞIN</p>
+        <h2 class="section-title">Fikirlerinizi<br />dinleyelim.</h2>
+        <p class="contact-lead">Bir sonraki fuarınız, kongreniz ya da kurumsal mekânınız için bize yazın; size özel çözümü birlikte kuralım.</p>
+        <ul class="contact-list">
+          <li><span>Adres</span><a href="https://www.google.com/maps?q=40.87075,29.267667" target="_blank" rel="noopener">Altkaynarca Mah. E5 Yanyol Cad. No:160 A Kat:1 Çalışkan Plaza, Pendik / İstanbul, TÜRKİYE</a></li>
+          <li><span>E-posta</span><a href="mailto:info@efex216.com">info@efex216.com</a></li>
+          <li><span>Telefon</span><a href="tel:+905322864250">+90 532 286 42 50</a></li>
+          <li><span>Sosyal</span>
+            <span class="socials">
+              <a href="https://www.instagram.com/efex216" target="_blank" rel="noopener">Instagram</a>
+              <a href="https://www.facebook.com/efex216" target="_blank" rel="noopener">Facebook</a>
+              <a href="https://www.linkedin.com/company/efex216" target="_blank" rel="noopener">LinkedIn</a>
+              <a href="https://www.youtube.com/channel/UCXNI2Lc4kJvVno724NoRoqg" target="_blank" rel="noopener">YouTube</a>
+            </span>
+          </li>
+        </ul>
+      </div>
+      <form class="contact-form" id="contactForm" novalidate>
+        <div class="field"><label for="name">Ad Soyad</label><input type="text" id="name" name="name" required /></div>
+        <div class="field"><label for="email">E-posta</label><input type="email" id="email" name="email" required /></div>
+        <div class="field"><label for="subject">Konu</label><input type="text" id="subject" name="subject" /></div>
+        <div class="field"><label for="message">Mesajınız</label><textarea id="message" name="message" rows="4" required></textarea></div>
+        <div class="field field-captcha"><label for="captcha">Doğrulama: <span id="captchaQ">3 + 4 = ?</span></label><input type="text" id="captcha" name="captcha" inputmode="numeric" required /></div>
+        <button type="submit" class="btn btn-primary btn-block">Gönder</button>
+        <p class="form-status" id="formStatus" role="status"></p>
+      </form>
+    </div>
+  </section>
+
+  <section class="contact-map" aria-label="Harita">
+    <iframe
+      src="https://maps.google.com/maps?q=40.87075,29.267667&z=17&hl=tr&output=embed"
+      loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+      title="EFEX216 konum haritası"></iframe>
+  </section>
+
+  <div id="footer-mount"></div>
+</body>
+</html>

@@ -330,6 +330,11 @@ ul{list-style:none}
 .value-card .v-num{font-family:"Oranienbaum",serif;font-size:2.2rem;color:var(--gold);display:block;margin-bottom:18px;line-height:1}
 .value-card h3{font-family:"Montserrat",sans-serif;font-size:1rem;font-weight:700;text-transform:uppercase;letter-spacing:.02em;color:var(--ink);margin-bottom:14px}
 .value-card p{font-size:.95rem}
+@media(max-width:900px){
+  .values-grid{grid-template-columns:1fr}
+  .value-card{border-right:none;border-bottom:1px solid var(--line)}
+  .value-card:last-child{border-bottom:none}
+}
 
 /* Projects page grid + view toggle */
 .proj-toolbar{display:flex;align-items:center;gap:10px;justify-content:flex-end;margin-bottom:26px}
@@ -374,6 +379,9 @@ body[data-page="referanslar"] .references{background:var(--bg)}
 body[data-page="referanslar"] .references .section-title{color:var(--ink)}
 .ref-page-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:18px}
 .ref-page-grid .ref-item{width:auto;flex:none}
+@media(max-width:1000px){.ref-page-grid{grid-template-columns:repeat(4,1fr)}}
+@media(max-width:760px){.ref-page-grid{grid-template-columns:repeat(3,1fr);gap:14px}}
+@media(max-width:480px){.ref-page-grid{grid-template-columns:repeat(2,1fr)}}
 
 /* Contact page split */
 .contact-page{padding:100px 0}

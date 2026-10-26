@@ -31,11 +31,23 @@
   /* --- Tam ekran menü --- */
   var btn = document.getElementById("tdMenuBtn");
   var menu = document.getElementById("tdMenu");
+  // Kaydırma kilitlenince kaybolan çubuğun yerini doldur (sayfa oynamasın)
+  var hdr = document.getElementById("header");
+  function lockScroll(on) {
+    var sb = on ? window.innerWidth - document.documentElement.clientWidth : 0;
+    document.body.classList.toggle("no-scroll", on);
+    document.body.style.paddingRight = sb ? sb + "px" : "";
+    if (hdr) hdr.style.paddingRight = sb ? "calc(var(--td-pad) + " + sb + "px)" : "";
+    if (menu) {
+      menu.style.right = "";
+      if (sb) menu.style.right = (parseFloat(getComputedStyle(menu).right) || 0) + sb + "px";
+    }
+  }
   function setMenu(open) {
     menu.classList.toggle("open", open);
     btn.classList.toggle("open", open);
     btn.setAttribute("aria-expanded", open ? "true" : "false");
-    document.body.classList.toggle("no-scroll", open);
+    lockScroll(open);
   }
   if (btn && menu) {
     btn.addEventListener("click", function () { setMenu(!menu.classList.contains("open")); });

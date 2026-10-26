@@ -1,4 +1,4 @@
-/* EFEX216 — ana sayfa: tam ekran menü, hero slider, reveal, imleç */
+/* EFEX216 — tüm sayfalar: tam ekran menü, slider, reveal, imleç */
 (function () {
   "use strict";
 
@@ -122,8 +122,38 @@
     }
   }
 
+  /* --- İç sayfa üst görseli: yükleyici kapanınca kelimeler gelsin --- */
+  var phero = document.querySelector(".td-phero");
+  if (phero) {
+    var showHero = function () { phero.classList.add("in"); };
+    var ld = document.getElementById("loader");
+    if (ld) {
+      var mo2 = new MutationObserver(function () {
+        if (ld.classList.contains("done")) { mo2.disconnect(); setTimeout(showHero, 150); }
+      });
+      mo2.observe(ld, { attributes: true, attributeFilter: ["class"] });
+      setTimeout(showHero, 5000);
+    } else {
+      showHero();
+    }
+  }
+
+  /* --- Proje ızgarası: 2 / 3 / 4 sütun sekmeleri --- */
+  var tdGrid = document.getElementById("tdGrid");
+  var tabs = document.querySelector(".td-tabs");
+  if (tdGrid && tabs) {
+    tabs.addEventListener("click", function (e) {
+      var b = e.target.closest("button[data-cols]");
+      if (!b) return;
+      tdGrid.className = "td-grid cols-" + b.getAttribute("data-cols");
+      Array.prototype.forEach.call(tabs.querySelectorAll("button"), function (x) {
+        x.classList.toggle("active", x === b);
+      });
+    });
+  }
+
   /* --- Reveal --- */
-  var rev = document.querySelectorAll(".td-reveal, .td-item");
+  var rev = document.querySelectorAll(".td-reveal, .td-item, .td-card, .td-gallery .g-item");
   if ("IntersectionObserver" in window) {
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (en) {

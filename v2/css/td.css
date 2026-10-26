@@ -452,10 +452,10 @@ html[data-theme="dark"] .td-map:hover iframe{filter:invert(.92) hue-rotate(180de
 html[data-theme="dark"] .td-logos img,
 html[data-theme="dark"] .td-menu-logos img{box-shadow:0 0 0 1px #262626}
 
-/* Kaydırınca header: hafif ton farkı + ince çizgi */
+/* Kaydırınca header: aynı renk, sadece silik alt çizgi */
 .td-header{transition:background-color .4s ease,box-shadow .4s ease}
-.td-header.scrolled{background:#f4f4f2;box-shadow:0 1px 0 rgba(0,0,0,.07)}
-html[data-theme="dark"] .td-header.scrolled{background:#171717;box-shadow:0 1px 0 rgba(255,255,255,.07)}
+.td-header.scrolled{box-shadow:0 1px 0 rgba(0,0,0,.08)}
+html[data-theme="dark"] .td-header.scrolled{box-shadow:0 1px 0 rgba(255,255,255,.08)}
 
 /* Form yerine geçici e-posta kutusu */
 .td-form[hidden]{display:none!important}

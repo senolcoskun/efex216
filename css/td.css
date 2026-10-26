@@ -395,3 +395,64 @@
 .td-tagline span{color:var(--td-gray)}
 .td .td-card{color:#fff}
 .td-card em,.td-cap{text-transform:none;letter-spacing:.02em}
+
+/* ============================================================
+   TEMA DÜĞMESİ + KOYU TEMA
+   ============================================================ */
+.td-theme{position:relative;width:34px;height:34px;display:inline-flex;align-items:center;justify-content:center;background:none;border:1px solid currentColor;border-radius:50%;color:#000;cursor:pointer;padding:0;opacity:.75;transition:opacity .2s,transform .5s var(--td-ease)}
+.td-theme:hover{opacity:1;transform:rotate(25deg)}
+.td-theme svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round}
+.td-theme .moon{display:none}
+html[data-theme="dark"] .td-theme .sun{display:none}
+html[data-theme="dark"] .td-theme .moon{display:block}
+body.td,.td-header,.td-menu{transition:background-color .45s ease,color .45s ease}
+
+html[data-theme="dark"]{color-scheme:dark}
+html[data-theme="dark"] body.td{background:#0e0e0e;color:#ececec;--td-ink:#ececec;--td-gray:#8d8d8d;--td-soft:#6a6a6a}
+html[data-theme="dark"] .td-header,
+html[data-theme="dark"] .td-menu{background:#0e0e0e}
+html[data-theme="dark"] .td-logo img{filter:invert(1)}
+html[data-theme="dark"] .td-menu-btn,
+html[data-theme="dark"] .td-theme{color:#ececec}
+html[data-theme="dark"] .td-burger i,
+html[data-theme="dark"] .td-menu-sep,
+html[data-theme="dark"] .td-item-title::after{background:#ececec}
+html[data-theme="dark"] .td-lang a.active,
+html[data-theme="dark"] .td-lang a:hover,
+html[data-theme="dark"] .td-section-title a:hover,
+html[data-theme="dark"] .td-menu-list .h a:hover,
+html[data-theme="dark"] .td-big-cta:hover .em{color:#fff}
+html[data-theme="dark"] .td-lang span{color:#3a3a3a}
+html[data-theme="dark"] .td-item-text p,
+html[data-theme="dark"] .td-svc p{color:#bdbdbd}
+html[data-theme="dark"] .td-item-media,
+html[data-theme="dark"] .td-gallery .g-item,
+html[data-theme="dark"] .td-map{background:#1a1a1a}
+html[data-theme="dark"] .td-more{border-bottom-color:#ececec}
+html[data-theme="dark"] .td-svc,
+html[data-theme="dark"] .td-contact,
+html[data-theme="dark"] .td-meta,
+html[data-theme="dark"] .td-stats,
+html[data-theme="dark"] .td-nav-proj,
+html[data-theme="dark"] .td-footer{border-top-color:rgba(255,255,255,.85)}
+html[data-theme="dark"] .td-svc li,
+html[data-theme="dark"] .td-meta li{border-bottom-color:rgba(255,255,255,.85)}
+html[data-theme="dark"] .td-svc li:hover{background:#181818}
+html[data-theme="dark"] .td-tabs button{color:#ececec}
+html[data-theme="dark"] .td-tabs button::after{border-top-color:#ececec}
+html[data-theme="dark"] .td-stats .stat-num{color:#fff}
+html[data-theme="dark"] .td-footer{color:#9a9a9a}
+html[data-theme="dark"] .td-footer a:hover,
+html[data-theme="dark"] .td-contact a:hover,
+html[data-theme="dark"] .td-nav-proj a:hover,
+html[data-theme="dark"] .td-menu-list a:hover{color:#8d8d8d}
+html[data-theme="dark"] .td-form{background:#161616;border:1px solid #262626}
+html[data-theme="dark"] .td-map iframe{filter:grayscale(1) invert(.92) contrast(.9)}
+html[data-theme="dark"] .td-map:hover iframe{filter:invert(.92) hue-rotate(180deg)}
+html[data-theme="dark"] .td-logos img,
+html[data-theme="dark"] .td-menu-logos img{box-shadow:0 0 0 1px #262626}
+
+/* Kaydırınca header: hafif ton farkı + ince çizgi */
+.td-header{transition:background-color .4s ease,box-shadow .4s ease}
+.td-header.scrolled{background:#f4f4f2;box-shadow:0 1px 0 rgba(0,0,0,.07)}
+html[data-theme="dark"] .td-header.scrolled{background:#171717;box-shadow:0 1px 0 rgba(255,255,255,.07)}

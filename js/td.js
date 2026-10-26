@@ -138,14 +138,19 @@
     }
   }
 
-  /* --- Proje ızgarası: 2 / 3 / 4 sütun sekmeleri --- */
+  /* --- Proje ızgarası: kategori filtresi --- */
   var tdGrid = document.getElementById("tdGrid");
   var tabs = document.querySelector(".td-tabs");
   if (tdGrid && tabs) {
     tabs.addEventListener("click", function (e) {
-      var b = e.target.closest("button[data-cols]");
+      var b = e.target.closest("button[data-filter]");
       if (!b) return;
-      tdGrid.className = "td-grid cols-" + b.getAttribute("data-cols");
+      var f = b.getAttribute("data-filter");
+      Array.prototype.forEach.call(tdGrid.querySelectorAll(".td-card"), function (c) {
+        var show = f === "all" || c.getAttribute("data-cat") === f;
+        c.classList.toggle("hide", !show);
+        if (show) c.classList.add("in");
+      });
       Array.prototype.forEach.call(tabs.querySelectorAll("button"), function (x) {
         x.classList.toggle("active", x === b);
       });

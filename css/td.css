@@ -342,7 +342,8 @@
   .td-phero .td-cap{left:20px;bottom:22px}
   .td-stats{grid-template-columns:1fr 1fr}
   .td-grid,.td-grid.cols-2,.td-grid.cols-4{grid-template-columns:1fr 1fr;gap:14px}
-  .td-tabs{display:none}
+  .td-tabs{overflow-x:auto;gap:18px;white-space:nowrap;max-width:100%;padding-bottom:4px}
+  .td-tabs-head{flex-direction:column;align-items:flex-start}
   .td-gallery{grid-template-columns:1fr;gap:14px}
   .td-form{padding:32px 22px}
   .td-form-grid{grid-template-columns:1fr}
@@ -357,3 +358,40 @@
 .td-section.td-wrap{padding-left:var(--td-pad);padding-right:var(--td-pad)}
 .td-map.td-full{margin-top:56px}
 .td-card strong{opacity:.92;text-shadow:0 2px 18px rgba(0,0,0,.45)}
+
+/* Yeni logo kartları (koyu zemin, beyaz logo) */
+.td-menu-logos img{filter:none;mix-blend-mode:normal;border-radius:6px;max-width:130px}
+.td-menu.open .td-menu-logos img{opacity:1}
+.td-menu-logos img:hover{transform:translateY(-3px)}
+.td-logos{border:0;gap:14px;grid-template-columns:repeat(7,1fr)}
+.td-logos div{border:0;aspect-ratio:auto;padding:0;background:none}
+.td-logos img{filter:none;mix-blend-mode:normal;opacity:1;border-radius:8px;height:auto;aspect-ratio:231/162;object-fit:cover}
+.td-logos div:hover img{transform:translateY(-4px) scale(1.02);filter:none}
+@media(max-width:1100px){.td-logos{grid-template-columns:repeat(5,1fr)}}
+@media(max-width:560px){.td-logos{grid-template-columns:repeat(3,1fr);gap:10px}}
+
+/* Proje kartı alt bilgisi + filtre */
+.td-card em small{display:block;font-size:11px;opacity:.75;letter-spacing:.08em;margin-top:3px}
+.td-card.hide{display:none}
+.td-item-media img{aspect-ratio:16/10}
+.td-svc li[id]{scroll-margin-top:120px}
+.td-item[id]{scroll-margin-top:110px}
+
+/* Üst menü dil seçimi */
+.td-head-right{display:flex;align-items:center;gap:34px}
+.td-lang{display:flex;align-items:center;gap:7px;font:600 14px/1 "Roboto",sans-serif;letter-spacing:.04em;color:var(--td-soft)}
+.td-lang a{padding:6px 2px;transition:color .2s}
+.td-lang a:hover,.td-lang a.active{color:#000}
+.td-lang span{color:#d0d0d0}
+@media(max-width:560px){.td-head-right{gap:18px}.td-lang{font-size:13px}}
+.td-big-cta .em{color:var(--td-gray);transition:color .4s}
+.td-big-cta:hover .em{color:#000}
+.td-tabs button span{color:var(--td-gray);font-size:12px;margin-left:4px}
+.td-name{margin:0 0 18px;font-size:13px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--td-gray)}
+.td-contact div{min-width:0}
+.td-contact .row{display:block;margin-bottom:18px}
+.td-contact .row b{display:block;font-size:12px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--td-gray);margin-bottom:6px}
+.td-tagline{margin:96px 0 0;font-size:clamp(26px,3vw,44px);font-weight:500;line-height:1.2;letter-spacing:-.01em}
+.td-tagline span{color:var(--td-gray)}
+.td .td-card{color:#fff}
+.td-card em,.td-cap{text-transform:none;letter-spacing:.02em}

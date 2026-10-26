@@ -106,8 +106,14 @@
   };
 
   var BR = /<br\s*\/?>/gi;
+  var DEC = document.createElement("div");
   function keyOf(el) {
-    return el.innerHTML.replace(BR, " ").replace(/\s+/g, " ").trim();
+    DEC.innerHTML = el.innerHTML.replace(BR, " ");
+    return DEC.textContent.replace(/\s+/g, " ").trim();
+  }
+  // v2 sayfalarının ek sözlüğü (js/i18n-v2.js)
+  if (window.EFEX_DICT_EXTRA) {
+    for (var k in window.EFEX_DICT_EXTRA) DICT[k] = window.EFEX_DICT_EXTRA[k];
   }
   function translatable(el) {
     for (var i = 0; i < el.children.length; i++) {

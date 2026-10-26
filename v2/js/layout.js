@@ -4,10 +4,10 @@
 
   var NAV = [
     { href: "index.html", label: "ANA SAYFA", key: "home" },
-    { href: "kurumsal.html", label: "KURUMSAL", key: "kurumsal" },
-    { href: "hizmetlerimiz.html", label: "HİZMETLERİMİZ", key: "hizmetler" },
+    { href: "bizkimiz.html", label: "BİZ KİMİZ?", key: "kurumsal" },
+    { href: "neleryapiyoruz.html", label: "NELER YAPIYORUZ?", key: "hizmetler" },
     { href: "projeler.html", label: "PROJELER", key: "projeler" },
-    { href: "referanslar.html", label: "REFERANSLAR", key: "referanslar" },
+    { href: "isortakliklarimiz.html", label: "İŞ ORTAKLIKLARIMIZ", key: "referanslar" },
     { href: "iletisim.html", label: "İLETİŞİM", key: "iletisim" }
   ];
 
@@ -41,10 +41,10 @@
           "<p>Mimarlık Hizmetleri — Exhibition Solutions. Fuar, kongre ve kurumsal mekânlarda tasarım ve uygulama çözüm ortağınız.</p>" +
         "</div>" +
         '<div class="footer-col"><h4>Menü</h4>' +
-          '<a href="kurumsal.html">Kurumsal</a>' +
-          '<a href="hizmetlerimiz.html">Hizmetlerimiz</a>' +
+          '<a href="bizkimiz.html">Biz Kimiz?</a>' +
+          '<a href="neleryapiyoruz.html">Neler Yapıyoruz?</a>' +
           '<a href="projeler.html">Projeler</a>' +
-          '<a href="referanslar.html">Referanslar</a>' +
+          '<a href="isortakliklarimiz.html">İş Ortaklıklarımız</a>' +
         "</div>" +
         '<div class="footer-col"><h4>İletişim</h4>' +
           '<a href="mailto:info@efex216.com">info@efex216.com</a>' +
@@ -67,10 +67,10 @@
 
   /* Tüm sayfalar: terminaldesign tarzı header + tam ekran menü + sade footer */
   if (document.body.classList.contains("td")) {
-    var REFS = ["sixt", "fsm", "eurasia", "votek", "arpek", "caliskan", "coldmar", "ikiel", "okur", "otantik", "reya"];
-    var refLogos = REFS.map(function (r) {
-      return '<a href="referanslar.html"><img src="../img/reference/r_' + r + '.png" alt="' + r + '" loading="lazy" /></a>';
-    }).join("");
+    var refLogos = "";
+    for (var r = 1; r <= 12; r++) {
+      refLogos += '<a href="isortakliklarimiz.html"><img src="../img/v2/refs/r' + r + '.png" alt="İş ortağı logosu" loading="lazy" /></a>';
+    }
     var li = function (items, delay) {
       return items.map(function (it, i) {
         return '<li' + (i === 0 ? ' class="h"' : "") + ' style="transition-delay:' + (delay + i * 0.04).toFixed(2) + 's">' + it + "</li>";
@@ -79,41 +79,43 @@
     HEADER =
       '<header class="td-header" id="header">' +
         '<a href="index.html" class="td-logo" aria-label="EFEX216 ana sayfa"><img src="../img/logo-2026.svg" alt="EFEX216 Mimarlık Hizmetleri" /></a>' +
+        '<div class="td-head-right">' +
+        '<div class="td-lang nav-lang" aria-label="Dil seçimi"><a href="#" class="active" lang="tr">TR</a><span>/</span><a href="#" lang="en">EN</a></div>' +
         '<button class="td-menu-btn" id="tdMenuBtn" aria-label="Menü" aria-expanded="false" aria-controls="tdMenu" data-hover>' +
           '<span class="lbl"><span>MENU</span><span>KAPAT</span></span>' +
           '<span class="td-burger" aria-hidden="true"><i></i><i></i></span>' +
         "</button>" +
+        "</div>" +
       "</header>" +
       '<nav class="td-menu" id="tdMenu" aria-label="Ana menü">' +
         '<div class="td-menu-inner">' +
-          '<div class="td-menu-lang nav-lang"><a href="#" class="active">TR</a><span>/</span><a href="#">EN</a></div>' +
           '<div class="td-menu-top">' +
             '<ul class="td-menu-list">' + li([
               '<a href="projeler.html">PROJELER</a>',
-              '<a href="proje-mmz-boru.html">MMZ Boru</a>',
-              '<a href="projeler.html">Sixt</a>',
-              '<a href="projeler.html">Ford</a>',
-              '<a href="projeler.html">YEO</a>',
+              '<a href="proje_efex216_1.html">MMZ Boru — Wire Tube 2026</a>',
+              '<a href="proje_efex216_2.html">Gurbetçiler — Yapı 2026</a>',
+              '<a href="proje_efex216_7.html">Daty Car Detailing</a>',
+              '<a href="proje_efex216_36.html">Aydın Dağ Evi</a>',
               '<a href="projeler.html">Tüm Projeler</a>'
             ], 0.25) + "</ul>" +
             '<ul class="td-menu-list">' + li([
-              '<a href="hizmetlerimiz.html">HİZMETLERİMİZ</a>',
-              '<a href="hizmetlerimiz.html">Fuar Standı Tasarımı</a>',
-              '<a href="hizmetlerimiz.html">Kongre &amp; Etkinlik</a>',
-              '<a href="hizmetlerimiz.html">AVM &amp; Mağaza</a>',
-              '<a href="hizmetlerimiz.html">Kurumsal İç Mimarlık</a>',
-              '<a href="hizmetlerimiz.html">Sahne &amp; Lansman</a>'
+              '<a href="neleryapiyoruz.html">NELER YAPIYORUZ?</a>',
+              '<a href="neleryapiyoruz.html#stant">Stant Tasarım &amp; Uygulama</a>',
+              '<a href="neleryapiyoruz.html#kurumsal">Kurumsal Mimari</a>',
+              '<a href="neleryapiyoruz.html#urun">Özel Ürün Çözümleri</a>',
+              '<a href="neleryapiyoruz.html#yonetim">Proje Yönetimi &amp; Uygulama</a>'
             ], 0.32) + "</ul>" +
             '<ul class="td-menu-list">' + li([
-              '<a href="kurumsal.html">KURUMSAL</a>',
-              '<a href="kurumsal.html">Hakkımızda</a>',
-              '<a href="referanslar.html">Referanslar</a>',
+              '<a href="bizkimiz.html">BİZ KİMİZ?</a>',
+              '<a href="bizkimiz.html">Hakkımızda</a>',
+              '<a href="isortakliklarimiz.html">İş Ortaklıklarımız</a>',
               '<a href="iletisim.html">Teklif Al</a>'
             ], 0.39) + "</ul>" +
             '<ul class="td-menu-list">' + li([
-              '<a href="iletisim.html">İLETİŞİM</a>',
+              '<a href="iletisim.html">DESTEK VE İLETİŞİM</a>',
               '<a href="mailto:info@efex216.com">info@efex216.com</a>',
-              '<a href="tel:+905322864250">+90 532 286 42 50</a>',
+              '<a href="tel:+905322864250">Satış: +90 532 286 42 50</a>',
+              '<a href="tel:+905301135050">7/24 Destek: +90 530 113 50 50</a>',
               '<a href="https://www.instagram.com/efex216" target="_blank" rel="noopener">Instagram</a>',
               '<a href="https://www.linkedin.com/company/efex216" target="_blank" rel="noopener">LinkedIn</a>'
             ], 0.46) + "</ul>" +

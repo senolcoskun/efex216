@@ -22,13 +22,15 @@
   <link rel="icon" href="img/logo.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Oranienbaum&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&family=Montserrat:wght@400;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/td.css" />
   <script defer src="js/layout.js"></script>
   <script defer src="js/main.js"></script>
   <script defer src="js/i18n.js"></script>
+  <script defer src="js/td.js"></script>
 </head>
-<body data-page="iletisim" class="inner-page">
+<body data-page="iletisim" class="td inner-page">
 
   <div class="loader" id="loader" role="status" aria-label="Yükleniyor">
     <div class="loader-box"><img src="img/logo-2026.svg" alt="EFEX216" class="loader-mark" /><span class="loader-shine" aria-hidden="true"></span></div>
@@ -36,54 +38,51 @@
 
   <div id="header-mount"></div>
 
-  <section class="page-hero">
-    <div class="page-hero-media"><img src="img/img-hakkimizda.png" alt="EFEX216 iletişim" /></div>
-    <div class="page-hero-overlay"></div>
-    <div class="container">
-      <p class="section-eyebrow">İLETİŞİM</p>
-      <h1>Yeni projeleri<br />konuşalım.</h1>
-      <p class="breadcrumb"><a href="index.html">Ana Sayfa</a> / İletişim</p>
+  <main>
+    <h1 style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">İletişim — EFEX216 Mimarlık Hizmetleri</h1>
+
+  <section class="td-phero td-wrap">
+    <div class="td-phero-box">
+      <img src="img/projects/cover_mmz.png" alt="EFEX216 iletişim" />
+      <div class="td-words" aria-hidden="true"><p><span>YENİ</span></p><p><span>PROJELERİ</span></p><p><span>KONUŞALIM</span></p></div>
+      <p class="td-cap td-crumb"><a href="index.html">Ana Sayfa</a> &nbsp;/&nbsp; İletişim</p>
     </div>
   </section>
 
-  <section class="contact-page">
-    <div class="container contact-grid">
-      <div class="contact-info">
-        <p class="section-eyebrow">BİZE ULAŞIN</p>
-        <h2 class="section-title">Fikirlerinizi<br />dinleyelim.</h2>
-        <p class="contact-lead">Bir sonraki fuarınız, kongreniz ya da kurumsal mekânınız için bize yazın; size özel çözümü birlikte kuralım.</p>
-        <ul class="contact-list">
-          <li><span>Adres</span><a href="https://www.google.com/maps?q=40.87075,29.267667" target="_blank" rel="noopener">Altkaynarca Mah. E5 Yanyol Cad. No:160 A Kat:1 Çalışkan Plaza, Pendik / İstanbul, TÜRKİYE</a></li>
-          <li><span>E-posta</span><a href="mailto:info@efex216.com">info@efex216.com</a></li>
-          <li><span>Telefon</span><a href="tel:+905322864250">+90 532 286 42 50</a></li>
-          <li><span>Sosyal</span>
-            <span class="socials">
-              <a href="https://www.instagram.com/efex216" target="_blank" rel="noopener">Instagram</a>
-              <a href="https://www.facebook.com/efex216" target="_blank" rel="noopener">Facebook</a>
-              <a href="https://www.linkedin.com/company/efex216" target="_blank" rel="noopener">LinkedIn</a>
-              <a href="https://www.youtube.com/channel/UCXNI2Lc4kJvVno724NoRoqg" target="_blank" rel="noopener">YouTube</a>
-            </span>
-          </li>
-        </ul>
+    <section class="td-section td-wrap">
+      <div class="td-narrow">
+        <div class="td-row td-reveal" style="margin-top:0">
+          <h2 class="td-h1">Fikirlerinizi<br />dinleyelim.</h2>
+          <p class="td-big" style="margin:0">Bir sonraki fuarınız, kongreniz ya da kurumsal mekânınız için bize yazın; size özel çözümü birlikte kuralım.</p>
+        </div>
+
+        <div class="td-contact td-reveal" style="margin-top:56px">
+          <div><span>Adres</span><a href="https://www.google.com/maps?q=40.87075,29.267667" target="_blank" rel="noopener">Altkaynarca Mah. E5 Yanyol Cad. No:160 A Kat:1 Çalışkan Plaza, Pendik / İstanbul</a></div>
+          <div><span>E-posta</span><a href="mailto:info@efex216.com">info@efex216.com</a><span style="margin-top:22px">Telefon</span><a href="tel:+905322864250">+90 532 286 42 50</a></div>
+          <div><span>Sosyal</span><a href="https://www.instagram.com/efex216" target="_blank" rel="noopener">Instagram</a><br /><a href="https://www.facebook.com/efex216" target="_blank" rel="noopener">Facebook</a><br /><a href="https://www.linkedin.com/company/efex216" target="_blank" rel="noopener">LinkedIn</a><br /><a href="https://www.youtube.com/channel/UCXNI2Lc4kJvVno724NoRoqg" target="_blank" rel="noopener">YouTube</a></div>
+        </div>
+
+        <div class="td-map td-full td-reveal" aria-label="Harita">
+          <iframe src="https://maps.google.com/maps?q=40.87075,29.267667&amp;z=17&amp;hl=tr&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="EFEX216 konum haritası"></iframe>
+        </div>
+
+        <form class="td-form td-reveal" id="contactForm" novalidate>
+          <div class="td-form-grid">
+            <div class="field"><label for="name">Ad Soyad</label><input type="text" id="name" name="name" required /></div>
+            <div class="field"><label for="email">E-posta</label><input type="email" id="email" name="email" required /></div>
+            <div class="field wide"><label for="subject">Konu</label><input type="text" id="subject" name="subject" /></div>
+            <div class="field wide"><label for="message">Mesajınız</label><textarea id="message" name="message" rows="3" required></textarea></div>
+            <div class="field"><label for="captcha">Doğrulama: <span id="captchaQ">3 + 4 = ?</span></label><input type="text" id="captcha" name="captcha" inputmode="numeric" required /></div>
+          </div>
+          <div class="td-form-foot">
+            <p class="form-status" id="formStatus" role="status"></p>
+            <button type="submit" class="td-submit">[ GÖNDER ]</button>
+          </div>
+        </form>
       </div>
-      <form class="contact-form" id="contactForm" novalidate>
-        <div class="field"><label for="name">Ad Soyad</label><input type="text" id="name" name="name" required /></div>
-        <div class="field"><label for="email">E-posta</label><input type="email" id="email" name="email" required /></div>
-        <div class="field"><label for="subject">Konu</label><input type="text" id="subject" name="subject" /></div>
-        <div class="field"><label for="message">Mesajınız</label><textarea id="message" name="message" rows="4" required></textarea></div>
-        <div class="field field-captcha"><label for="captcha">Doğrulama: <span id="captchaQ">3 + 4 = ?</span></label><input type="text" id="captcha" name="captcha" inputmode="numeric" required /></div>
-        <button type="submit" class="btn btn-primary btn-block">Gönder</button>
-        <p class="form-status" id="formStatus" role="status"></p>
-      </form>
-    </div>
-  </section>
+    </section>
 
-  <section class="contact-map" aria-label="Harita">
-    <iframe
-      src="https://maps.google.com/maps?q=40.87075,29.267667&z=17&hl=tr&output=embed"
-      loading="lazy" referrerpolicy="no-referrer-when-downgrade"
-      title="EFEX216 konum haritası"></iframe>
-  </section>
+  </main>
 
   <div id="footer-mount"></div>
 </body>

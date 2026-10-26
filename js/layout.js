@@ -65,8 +65,8 @@
       "</div>" +
     "</footer>";
 
-  /* Ana sayfa: terminaldesign tarzı header + tam ekran menü + sade footer */
-  if (document.body.classList.contains("td-home")) {
+  /* Tüm sayfalar: terminaldesign tarzı header + tam ekran menü + sade footer */
+  if (document.body.classList.contains("td")) {
     var REFS = ["sixt", "fsm", "eurasia", "votek", "arpek", "caliskan", "coldmar", "ikiel", "okur", "otantik", "reya"];
     var refLogos = REFS.map(function (r) {
       return '<a href="referanslar.html"><img src="img/reference/r_' + r + '.png" alt="' + r + '" loading="lazy" /></a>';

@@ -110,6 +110,7 @@ window.EFEX_DICT_EXTRA = {
  "E-posta": "E-mail",
  "Telefon": "Phone",
  "Sosyal": "Social",
+ "WhatsApp'tan yazın": "Chat on WhatsApp",
  "Fuar Standı": "Exhibition Stand",
  "Ticari Mekan": "Commercial Space",
  "Konut & Mimari": "Residential & Architecture",

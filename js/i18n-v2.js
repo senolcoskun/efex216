@@ -167,6 +167,7 @@ window.EFEX_DICT_EXTRA = {
  "Mesajınız": "Your Message",
  "[ GÖNDER ]": "[ SEND ]",
  "Destek ve iletişim.": "Support and contact.",
+ "Projeniz, teklif talebiniz ya da sorularınız için bize e-posta ile ulaşın; en kısa sürede dönüş yapalım.": "Reach us by e-mail for your project, quote request or questions; we will get back to you as soon as possible.",
  "Destek ve İletişim": "Support and Contact",
  "DESTEK": "SUPPORT",
  "&İLETİŞİM": "&CONTACT"

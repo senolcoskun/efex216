@@ -2,6 +2,32 @@
 (function () {
   "use strict";
 
+  /* --- Açık / koyu tema --- */
+  var root = document.documentElement;
+  var themeBtn = document.getElementById("tdTheme");
+  function setTheme(th, save) {
+    root.setAttribute("data-theme", th);
+    if (themeBtn) themeBtn.setAttribute("aria-pressed", th === "dark" ? "true" : "false");
+    if (save) { try { localStorage.setItem("efex_theme", th); } catch (e) {} }
+  }
+  if (!root.getAttribute("data-theme")) setTheme("light", false);
+  setTheme(root.getAttribute("data-theme"), false);
+  if (themeBtn) {
+    themeBtn.addEventListener("click", function () {
+      setTheme(root.getAttribute("data-theme") === "dark" ? "light" : "dark", true);
+    });
+  }
+  // Kullanıcı seçim yapmadıysa sistem tercihini takip et
+  if (window.matchMedia) {
+    var mq = window.matchMedia("(prefers-color-scheme: dark)");
+    var onSys = function (e) {
+      var saved = null;
+      try { saved = localStorage.getItem("efex_theme"); } catch (er) {}
+      if (!saved) setTheme(e.matches ? "dark" : "light", false);
+    };
+    if (mq.addEventListener) mq.addEventListener("change", onSys);
+  }
+
   /* --- Tam ekran menü --- */
   var btn = document.getElementById("tdMenuBtn");
   var menu = document.getElementById("tdMenu");

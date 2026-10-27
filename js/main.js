@@ -213,7 +213,7 @@
     d.id = "page-transition";
     d.setAttribute("role", "status");
     d.innerHTML =
-      '<div class="loader-box"><img src="img/logo-2026.svg" alt="EFEX216" class="loader-mark" />' +
+      '<div class="loader-box"><img src="' + (document.body.getAttribute("data-root") || "") + 'img/logo-2026.svg" alt="EFEX216" class="loader-mark" />' +
       '<span class="loader-shine" aria-hidden="true"></span></div>';
     document.body.appendChild(d);
     // force reflow, then fade in

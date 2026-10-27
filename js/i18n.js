@@ -1,4 +1,4 @@
-/* EFEX216 — TR/EN toggle (matches source Turkish text, no HTML changes needed) */
+/* EFEX216 — EN sözlüğü: kök (EN) sayfalarda Türkçe kalan metinleri çevirir */
 (function () {
   "use strict";
 
@@ -106,8 +106,14 @@
   };
 
   var BR = /<br\s*\/?>/gi;
+  var DEC = document.createElement("div");
   function keyOf(el) {
-    return el.innerHTML.replace(BR, " ").replace(/\s+/g, " ").trim();
+    DEC.innerHTML = el.innerHTML.replace(BR, " ");
+    return DEC.textContent.replace(/\s+/g, " ").trim();
+  }
+  // Sayfaların ek sözlüğü (js/i18n-dict.js)
+  if (window.EFEX_DICT_EXTRA) {
+    for (var k in window.EFEX_DICT_EXTRA) DICT[k] = window.EFEX_DICT_EXTRA[k];
   }
   function translatable(el) {
     for (var i = 0; i < el.children.length; i++) {
@@ -115,41 +121,17 @@
     }
     return true;
   }
-  function apply(lang) {
+  // Kök (EN) sayfalarda: ortak header/footer ve henüz İngilizceye çevrilmemiş metinler
+  // sözlükle çevrilir. tr/ sayfalarında hiçbir şey yapılmaz.
+  function applyEn() {
     var els = document.querySelectorAll(
       "h1,h2,h3,h4,h5,p,a,span,strong,button,label,li,th,td"
     );
     Array.prototype.forEach.call(els, function (el) {
       if (!translatable(el)) return;
-      var orig = el.getAttribute("data-tr-html");
-      if (orig === null) {
-        orig = el.innerHTML;
-        el.setAttribute("data-tr-html", orig);
-      }
-      if (lang === "en") {
-        var t = DICT[keyOf(el)];
-        if (t !== undefined) el.textContent = t;
-      } else {
-        el.innerHTML = orig;
-      }
+      var t = DICT[keyOf(el)];
+      if (t !== undefined) el.textContent = t;
     });
-    document.documentElement.setAttribute("lang", lang === "en" ? "en" : "tr");
-    document.querySelectorAll(".nav-lang a").forEach(function (a) {
-      var isEn = a.textContent.trim().toUpperCase() === "EN";
-      a.classList.toggle("active", isEn === (lang === "en"));
-    });
-    try { localStorage.setItem("efex_lang", lang); } catch (e) {}
   }
-
-  document.addEventListener("click", function (e) {
-    var a = e.target.closest(".nav-lang a");
-    if (!a) return;
-    e.preventDefault();
-    apply(a.textContent.trim().toUpperCase() === "EN" ? "en" : "tr");
-  });
-
-  // apply saved preference on load (header is injected by layout.js beforehand)
-  var saved = null;
-  try { saved = localStorage.getItem("efex_lang"); } catch (e) {}
-  if (saved === "en") apply("en");
+  if (document.documentElement.lang === "en") applyEn();
 })();

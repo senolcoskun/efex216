@@ -12,7 +12,8 @@
     "neleryapiyoruz.html": "services.html",
     "projeler.html": "projects.html",
     "isortakliklarimiz.html": "partners.html",
-    "iletisim.html": "contact.html"
+    "iletisim.html": "contact.html",
+    "kvkk.html": "privacy.html"
   };
   function langPath(p) {
     if (LANG !== "en") return p;
@@ -105,7 +106,8 @@
     "</nav>";
   var FOOTER =
     '<footer class="td-footer">' +
-      "<span>© <span id=\"year\"></span> " + t("EFEX216 Mimarlık Hizmetleri", "EFEX216 Architecture Services") + "</span>" +
+      "<span>© <span id=\"year\"></span> " + t("EFEX216 Mimarlık Hizmetleri", "EFEX216 Architecture Services") +
+        ' · <a href="kvkk.html">' + t("KVKK Aydınlatma Metni", "Privacy Notice") + "</a></span>" +
       "<nav>" +
         '<a href="https://www.instagram.com/efex216" target="_blank" rel="noopener">Instagram</a>' +
         '<a href="https://www.facebook.com/efex216" target="_blank" rel="noopener">Facebook</a>' +

@@ -138,6 +138,8 @@
     if (e.defaultPrevented || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
     var a = e.target.closest ? e.target.closest("a") : null;
     if (!a || !isInternalLink(a)) return;
+    // Aynı sayfadaki bir bölüme gidiliyorsa sayfa yenilenmez; perde açılırsa hiç kapanmaz
+    if (a.hash && a.pathname === location.pathname && a.search === location.search) return;
     e.preventDefault();
     var url = a.href;
     showTransition(function () { window.location.href = url; });

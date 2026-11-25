@@ -43,6 +43,12 @@
     document.addEventListener("keydown", function (e) {
       if (e.key === "Escape" && menu.classList.contains("open")) setMenu(false);
     });
+    // Aynı sayfadaki bir bölüme (#urun gibi) giden menü linki: sayfa yenilenmez,
+    // menüyü kapat ki tarayıcı o bölüme kaydırabilsin
+    menu.addEventListener("click", function (e) {
+      var a = e.target.closest("a[href]");
+      if (a && a.hash && a.pathname === location.pathname && a.search === location.search) setMenu(false);
+    });
   }
 
   /* --- Hero slider --- */

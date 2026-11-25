@@ -1,6 +1,15 @@
 # EFEX216 — sunucu yönlendirmeleri (efex216.com, LiteSpeed/Apache)
 # Eski sitenin adresleri yeni sayfalara kalıcı (301) yönlendirilir; Google sıralaması korunur.
 
+# Güvenlik başlıkları
+<IfModule mod_headers.c>
+  Header set Strict-Transport-Security "max-age=31536000"
+  Header set X-Content-Type-Options "nosniff"
+  Header set X-Frame-Options "SAMEORIGIN"
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+  Header set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=()"
+</IfModule>
+
 RewriteEngine On
 
 # Tek adres: www.efex216.com -> efex216.com

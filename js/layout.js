@@ -55,7 +55,7 @@
     '<header class="td-header" id="header">' +
       '<a href="index.html" class="td-logo" aria-label="' + t("EFEX216 ana sayfa", "EFEX216 home") + '"><img src="img/logo-2026.svg" alt="' + t("EFEX216 Mimarlık Hizmetleri", "EFEX216 Architecture Services") + '" /></a>' +
       '<div class="td-head-right">' +
-      '<div class="td-lang nav-lang" aria-label="' + t("Dil seçimi", "Language") + '">@@LANG@@</div>' +
+      '<div class="td-lang" aria-label="' + t("Dil seçimi", "Language") + '">@@LANG@@</div>' +
       '<button class="td-theme" id="tdTheme" type="button" aria-label="' + t("Açık / koyu tema", "Light / dark theme") + '" title="' + t("Açık / koyu tema", "Light / dark theme") + '">' +
         '<svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg>' +
         '<svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.6A8 8 0 0 1 9.4 4a8 8 0 1 0 10.6 10.6z"/></svg>' +
@@ -71,10 +71,10 @@
         '<div class="td-menu-top">' +
           '<ul class="td-menu-list">' + li([
             '<a href="projeler.html">' + t("PROJELER", "PROJECTS") + '</a>',
-            '<a href="projeler/mmz-boru-ve-profil-wire-tube-2026.html">MMZ Boru — Wire Tube 2026</a>',
-            '<a href="projeler/gurbetciler-plastik-yapi-2026.html">' + t("Gurbetçiler — Yapı 2026", "Gurbetçiler — Turkey Build 2026") + '</a>',
-            '<a href="projeler/daty-car-detailing-ticari-mekan-2026.html">Daty Car Detailing</a>',
-            '<a href="projeler/aydin-dag-evi-celik-yapi-2026.html">' + t("Aydın Dağ Evi", "Aydın Chalet") + '</a>',
+            '<a href="projeler/mmz_5.html">MMZ Boru — Wire Tube 2026</a>',
+            '<a href="projeler/gurbetciler_6.html">' + t("Gurbetçiler — Yapı 2026", "Gurbetçiler — Turkey Build 2026") + '</a>',
+            '<a href="projeler/daty.html">Daty Car Detailing</a>',
+            '<a href="projeler/aydin.html">' + t("Aydın Dağ Evi", "Aydın Chalet") + '</a>',
             '<a href="projeler.html">' + t("Tüm Projeler", "All Projects") + '</a>'
           ], 0.25) + "</ul>" +
           '<ul class="td-menu-list">' + li([
@@ -94,7 +94,7 @@
             '<a href="iletisim.html">' + t("DESTEK VE İLETİŞİM", "SUPPORT AND CONTACT") + '</a>',
             '<a href="mailto:info@efex216.com">info@efex216.com</a>',
             '<a href="tel:+905322864250">' + t("Satış", "Sales") + ': +90 532 286 42 50</a>',
-            '<a href="tel:+905301135050">' + t("7/24 Destek", "24/7 Support") + ': +90 530 113 50 50</a>',
+            '<a href="tel:+905301135050">' + t("7/24 Destek", "7/24 Support") + ': +90 530 113 50 50</a>',
             '<a href="https://www.instagram.com/efex216" target="_blank" rel="noopener">Instagram</a>',
             '<a href="https://www.linkedin.com/company/efex216" target="_blank" rel="noopener">LinkedIn</a>'
           ], 0.46) + "</ul>" +

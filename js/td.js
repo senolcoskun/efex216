@@ -51,7 +51,7 @@
     var slides = slider.querySelectorAll(".td-slide");
     var dotsWrap = slider.querySelector(".td-dots");
     var countEl = slider.querySelector(".td-count");
-    var DUR = 5000;
+    var DUR = 3500;
     var idx = 0, timer = null, remaining = DUR, startedAt = 0;
     slider.style.setProperty("--td-dur", DUR / 1000 + "s");
 
@@ -59,7 +59,7 @@
     Array.prototype.forEach.call(slides, function (_, i) {
       var d = document.createElement("button");
       d.type = "button";
-      d.setAttribute("aria-label", "Slayt " + (i + 1));
+      d.setAttribute("aria-label", (document.documentElement.lang === "tr" ? "Slayt " : "Slide ") + (i + 1));
       d.addEventListener("click", function () { go(i); });
       dotsWrap.appendChild(d);
       dots.push(d);

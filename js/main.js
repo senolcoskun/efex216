@@ -1,26 +1,33 @@
-/* EFEX216 — interactions (runs after layout.js injects header/footer) */
+/* EFEX216 — yükleyici, header, görsel büyütme, sayfa geçişi, iletişim formu
+   (layout.js header/footer'ı yerleştirdikten sonra çalışır) */
 (function () {
   "use strict";
 
-  /* --- Loader --- */
+  var TR = document.documentElement.lang === "tr";
+  function t(tr, en) { return TR ? tr : en; }
+
+  /* --- Yükleyici --- */
   var loader = document.getElementById("loader");
   if (loader) {
     var startTime = Date.now();
-    // First visit in this session shows a full 3s intro; later page loads are brief.
+    // Oturumdaki ilk ziyaret 3 sn'lik açılışı gösterir; sonraki sayfalar kısa sürer.
     var firstVisit = false;
     try {
       firstVisit = !sessionStorage.getItem("efex_visited");
       sessionStorage.setItem("efex_visited", "1");
     } catch (e) {}
     var MIN_SHOW = firstVisit ? 3000 : 450;
+    var hidden = false;
     document.body.classList.add("no-scroll");
     var hideLoader = function () {
+      if (hidden) return;
+      hidden = true;
       var wait = Math.max(0, MIN_SHOW - (Date.now() - startTime));
       setTimeout(function () {
         loader.classList.add("done");
         document.body.classList.remove("no-scroll");
         setTimeout(function () {
-          if (loader && loader.parentNode) loader.parentNode.removeChild(loader);
+          if (loader.parentNode) loader.parentNode.removeChild(loader);
         }, 800);
       }, wait);
     };
@@ -28,97 +35,15 @@
     setTimeout(hideLoader, 4500);
   }
 
+  /* --- Kaydırınca header alt çizgisi --- */
   var header = document.getElementById("header");
-  var nav = document.getElementById("nav");
-  var toggle = document.getElementById("navToggle");
-
-  /* --- Sticky header --- */
-  function onScroll() {
-    if (window.scrollY > 20) header.classList.add("scrolled");
-    else header.classList.remove("scrolled");
-  }
   if (header) {
+    var onScroll = function () { header.classList.toggle("scrolled", window.scrollY > 20); };
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
   }
 
-  /* --- Mobile menu --- */
-  if (toggle && nav) {
-    toggle.addEventListener("click", function () {
-      var open = nav.classList.toggle("open");
-      toggle.classList.toggle("open");
-      toggle.setAttribute("aria-expanded", open ? "true" : "false");
-    });
-  }
-
-  /* --- Hero video: skip first 2 seconds (also on loop) --- */
-  var heroVid = document.querySelector(".hero-video");
-  if (heroVid) {
-    var START = 6;
-    var seekStart = function () {
-      if (heroVid.currentTime < START) {
-        try { heroVid.currentTime = START; } catch (e) {}
-      }
-    };
-    heroVid.addEventListener("loadedmetadata", seekStart);
-    heroVid.addEventListener("timeupdate", seekStart);
-    if (heroVid.readyState >= 1) seekStart();
-  }
-
-  /* --- Reveal on scroll --- */
-  var items = document.querySelectorAll(
-    ".hl-card,.about-media,.about-body,.svc-card,.ref-marquee,.ref-grid,.section-head,.projects-content,.contact-info,.contact-form,.stat,.page-lead,.intro-inner,.value-card,.proj-card"
-  );
-  items.forEach(function (el, i) {
-    el.classList.add("reveal");
-    el.style.transitionDelay = (i % 6) * 70 + "ms";
-  });
-  var io = new IntersectionObserver(
-    function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("in");
-          io.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.14 }
-  );
-  items.forEach(function (el) {
-    io.observe(el);
-  });
-
-  /* --- Animated counters --- */
-  var counters = document.querySelectorAll(".stat-num");
-  var counted = false;
-  if (counters.length) {
-    var statsObserver = new IntersectionObserver(
-      function (entries) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting && !counted) {
-            counted = true;
-            counters.forEach(function (el) {
-              var target = parseInt(el.getAttribute("data-count"), 10) || 0;
-              var duration = 1500;
-              var startT = null;
-              function step(ts) {
-                if (!startT) startT = ts;
-                var p = Math.min((ts - startT) / duration, 1);
-                var eased = 1 - Math.pow(1 - p, 3);
-                el.textContent = Math.round(target * eased);
-                if (p < 1) requestAnimationFrame(step);
-              }
-              requestAnimationFrame(step);
-            });
-          }
-        });
-      },
-      { threshold: 0.4 }
-    );
-    statsObserver.observe(counters[0].closest(".stats"));
-  }
-
-  /* --- Lightbox with prev/next (reference logos & project images) --- */
+  /* --- Görsel büyütme (proje galerileri), önceki/sonraki ile --- */
   var lb = null, lbImg = null, lbList = [], lbIndex = 0;
   function lbRender() {
     var it = lbList[lbIndex];
@@ -131,19 +56,20 @@
     lbRender();
   }
   function closeLightbox() {
-    if (lb) {
-      lb.classList.remove("open");
-      document.body.classList.remove("no-scroll");
-    }
+    if (!lb) return;
+    lb.classList.remove("open");
+    document.body.classList.remove("no-scroll");
   }
   function ensureLb() {
     if (lb) return;
     lb = document.createElement("div");
     lb.className = "lightbox";
+    lb.setAttribute("role", "dialog");
+    lb.setAttribute("aria-modal", "true");
     lb.innerHTML =
-      '<button class="lb-close" aria-label="Kapat">&times;</button>' +
-      '<button class="lb-nav lb-prev" aria-label="Önceki">&#8249;</button>' +
-      '<button class="lb-nav lb-next" aria-label="Sonraki">&#8250;</button>' +
+      '<button class="lb-close" type="button" aria-label="' + t("Kapat", "Close") + '">&times;</button>' +
+      '<button class="lb-nav lb-prev" type="button" aria-label="' + t("Önceki", "Previous") + '">&#8249;</button>' +
+      '<button class="lb-nav lb-next" type="button" aria-label="' + t("Sonraki", "Next") + '">&#8250;</button>' +
       '<img alt="" />';
     document.body.appendChild(lb);
     lbImg = lb.querySelector("img");
@@ -161,7 +87,7 @@
   }
   function openLightbox(img) {
     ensureLb();
-    var group = img.closest(".gallery, .ref-track, .ref-page-grid");
+    var group = img.closest(".gallery");
     var imgs = group ? group.querySelectorAll("img") : [img];
     var clicked = img.getAttribute("src"), seen = {};
     lbList = [];
@@ -179,26 +105,13 @@
     lb.classList.add("open");
   }
   document.addEventListener("click", function (e) {
-    var img = e.target.closest(".ref-item img, .g-item img");
+    var img = e.target.closest(".g-item img");
     if (!img) return;
     e.preventDefault();
     openLightbox(img);
   });
 
-  /* --- Projects view toggle (2 / 4 columns) --- */
-  var projGrid = document.getElementById("projGrid");
-  var projToolbar = document.querySelector(".proj-toolbar");
-  if (projGrid && projToolbar) {
-    projToolbar.addEventListener("click", function (e) {
-      var b = e.target.closest("button[data-cols]");
-      if (!b) return;
-      projGrid.className = "proj-page-grid cols-" + b.getAttribute("data-cols");
-      var btns = projToolbar.querySelectorAll("button");
-      Array.prototype.forEach.call(btns, function (x) { x.classList.toggle("active", x === b); });
-    });
-  }
-
-  /* --- Page transition: show logo loader before navigating --- */
+  /* --- Sayfa geçişi: başka sayfaya giderken logo perdesi --- */
   function isInternalLink(a) {
     var href = a.getAttribute("href");
     if (!href) return false;
@@ -212,74 +125,136 @@
     d.className = "loader done";
     d.id = "page-transition";
     d.setAttribute("role", "status");
+    d.setAttribute("aria-label", t("Yükleniyor", "Loading"));
     d.innerHTML =
       '<div class="loader-box"><img src="' + (document.body.getAttribute("data-root") || "") + 'img/logo-2026.svg" alt="EFEX216" class="loader-mark" />' +
       '<span class="loader-shine" aria-hidden="true"></span></div>';
     document.body.appendChild(d);
-    // force reflow, then fade in
-    void d.offsetWidth;
+    void d.offsetWidth; // önce çiz, sonra görünür yap
     d.classList.remove("done");
     if (onReady) setTimeout(onReady, 1150);
   }
   document.addEventListener("click", function (e) {
-    if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+    if (e.defaultPrevented || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
     var a = e.target.closest ? e.target.closest("a") : null;
     if (!a || !isInternalLink(a)) return;
     e.preventDefault();
     var url = a.href;
-    showTransition(function () {
-      window.location.href = url;
-    });
+    showTransition(function () { window.location.href = url; });
+  });
+  // Tarayıcının "geri" tuşu sayfayı önbellekten açınca perde ekranda kalmasın
+  window.addEventListener("pageshow", function (e) {
+    if (!e.persisted) return;
+    var pt = document.getElementById("page-transition");
+    if (pt) pt.parentNode.removeChild(pt);
   });
 
-  /* --- Contact form + math captcha (only where present) --- */
+  /* --- İletişim formu --- */
   var form = document.getElementById("contactForm");
   if (form) {
+    // Web3Forms: sunucusuz form gönderimi. Mesajlar, erişim anahtarının kayıtlı
+    // olduğu e-posta adresine gelir. Anahtar herkese açık olacak şekilde tasarlanmıştır.
+    var MAIL = "info@efex216.com"; // gönderim başarısız olursa yedek e-posta
+    var ENDPOINT = "https://api.web3forms.com/submit";
+    var ACCESS_KEY = "25d4e0f5-ab5b-4364-a33b-196e571c19fa";
+    var MSG = {
+      required: t("Lütfen zorunlu alanları doldurun.", "Please fill in the required fields."),
+      email: t("Geçerli bir e-posta adresi girin.", "Please enter a valid email address."),
+      captcha: t("Doğrulama yanıtı hatalı. Tekrar deneyin.", "The verification answer is incorrect. Please try again."),
+      sending: t("GÖNDERİLİYOR…", "SENDING…"),
+      ok: t("Teşekkürler! Mesajınız bize ulaştı; en kısa sürede dönüş yapacağız.", "Thank you! Your message has reached us; we will get back to you shortly."),
+      fail: t("Mesaj şu an gönderilemedi.", "Your message could not be sent right now."),
+      mailLink: t("E-posta ile gönderin →", "Send it by email →"),
+      defaultSubject: t("Web sitesi iletişim formu", "Website contact form")
+    };
+    var f = form.elements;
     var status = document.getElementById("formStatus");
+    var submitBtn = form.querySelector('button[type="submit"]');
+    var btnText = submitBtn.textContent;
     var captchaQ = document.getElementById("captchaQ");
-    var a, b;
-    function newCaptcha() {
-      a = 2 + Math.floor(Math.random() * 8);
-      b = 1 + Math.floor(Math.random() * 6);
-      captchaQ.textContent = a + " + " + b + " = ?";
-    }
+    var ca = 0, cb = 0;
+
+    var newCaptcha = function () {
+      ca = 2 + Math.floor(Math.random() * 8);
+      cb = 1 + Math.floor(Math.random() * 6);
+      captchaQ.textContent = ca + " + " + cb + " = ?";
+    };
+    var setStatus = function (text, kind, mailtoHref) {
+      status.className = "form-status" + (kind ? " " + kind : "");
+      status.textContent = text;
+      if (mailtoHref) {
+        var a = document.createElement("a");
+        a.href = mailtoHref;
+        a.textContent = " " + MSG.mailLink;
+        status.appendChild(a);
+      }
+    };
+    var setBusy = function (busy) {
+      submitBtn.disabled = busy;
+      submitBtn.textContent = busy ? MSG.sending : btnText;
+    };
     newCaptcha();
+
     form.addEventListener("submit", function (e) {
       e.preventDefault();
-      status.className = "form-status";
-      var name = form.name.value.trim();
-      var email = form.email.value.trim();
-      var message = form.message.value.trim();
-      var captcha = parseInt(form.captcha.value.trim(), 10);
-      if (!name || !email || !message) {
-        status.textContent = "Lütfen zorunlu alanları doldurun.";
-        status.classList.add("err");
-        return;
-      }
-      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-        status.textContent = "Geçerli bir e-posta adresi girin.";
-        status.classList.add("err");
-        return;
-      }
-      if (captcha !== a + b) {
-        status.textContent = "Doğrulama yanıtı hatalı. Tekrar deneyin.";
-        status.classList.add("err");
+      var name = f.name.value.trim();
+      var email = f.email.value.trim();
+      var subject = f.subject.value.trim() || MSG.defaultSubject;
+      var message = f.message.value.trim();
+
+      if (!name || !email || !message) return setStatus(MSG.required, "err");
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return setStatus(MSG.email, "err");
+      if (parseInt(f.captcha.value.trim(), 10) !== ca + cb) {
+        setStatus(MSG.captcha, "err");
         newCaptcha();
-        form.captcha.value = "";
+        f.captcha.value = "";
         return;
       }
-      var subject = form.subject.value.trim() || "Web Sitesi İletişim Formu";
-      var body =
-        "Ad Soyad: " + name + "\n" +
-        "E-posta: " + email + "\n\n" +
-        message + "\n";
-      window.location.href =
-        "mailto:info@efex216.com?subject=" + encodeURIComponent(subject) +
-        "&body=" + encodeURIComponent(body);
-      status.textContent = "Teşekkürler! E-posta uygulamanız mesajınızla açılıyor; göndererek tamamlayın.";
-      status.classList.add("ok");
-      form.reset();
-      newCaptcha();
+      // Bot tuzağı: görünmeyen alan doluysa gönderme, başarılı gibi davran
+      if (f.botcheck && f.botcheck.value) {
+        setStatus(MSG.ok, "ok");
+        form.reset();
+        return;
+      }
+
+      var mailto = "mailto:" + MAIL + "?subject=" + encodeURIComponent(subject) +
+        "&body=" + encodeURIComponent(t("Ad Soyad", "Name") + ": " + name + "\n" + t("E-posta", "Email") + ": " + email + "\n\n" + message + "\n");
+      var ctrl = typeof AbortController === "function" ? new AbortController() : null;
+      var timer = setTimeout(function () { if (ctrl) ctrl.abort(); }, 15000);
+      setBusy(true);
+      setStatus("", "");
+
+      fetch(ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          access_key: ACCESS_KEY,
+          subject: "EFEX216 — " + subject,
+          from_name: "EFEX216 Web Sitesi",
+          name: name,
+          email: email,
+          message: message,
+          page: location.href
+        }),
+        signal: ctrl ? ctrl.signal : undefined
+      })
+        .then(function (r) {
+          return r.json().catch(function () { return {}; }).then(function (d) {
+            if (!r.ok || String(d.success) !== "true") throw new Error(d.message || "HTTP " + r.status);
+          });
+        })
+        .then(function () {
+          setStatus(MSG.ok, "ok");
+          form.reset();
+          newCaptcha();
+        })
+        .catch(function () {
+          setStatus(MSG.fail, "err", mailto);
+        })
+        .then(function () {
+          clearTimeout(timer);
+          setBusy(false);
+        });
     });
   }
 })();

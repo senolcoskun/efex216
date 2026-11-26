@@ -171,6 +171,44 @@
     }
   }
 
+  /* --- Dev kelimeler: en uzun satır kutuya sığmıyorsa yazıyı orantılı küçült ---
+     (INTERNATIONAL, HİKAYELERİMİZ gibi uzun kelimeler dar ekranda kesiliyordu) */
+  var wordBoxes = document.querySelectorAll(".td-words");
+  function fitWords() {
+    Array.prototype.forEach.call(wordBoxes, function (w) {
+      w.style.fontSize = "";
+      w.style.lineHeight = "";
+      var box = w.closest(".td-slide, .td-phero-box");
+      if (!box) return;
+      var cs = getComputedStyle(w);
+      var cap = box.querySelector(".td-cap");
+      var left = box.getBoundingClientRect().left + (cap ? parseFloat(getComputedStyle(cap).left) || 20 : 20);
+      var right = w.getBoundingClientRect().right - (parseFloat(cs.paddingRight) || 0);
+      var widest = 0;
+      Array.prototype.forEach.call(w.querySelectorAll("span"), function (s) {
+        var r = document.createRange();
+        r.selectNodeContents(s);
+        widest = Math.max(widest, r.getBoundingClientRect().width);
+      });
+      var avail = right - left;
+      if (widest > avail && avail > 0) {
+        var k = avail / widest;
+        w.style.fontSize = parseFloat(cs.fontSize) * k + "px";
+        if (parseFloat(cs.lineHeight)) w.style.lineHeight = parseFloat(cs.lineHeight) * k + "px";
+      }
+    });
+  }
+  if (wordBoxes.length) {
+    fitWords();
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitWords);
+    window.addEventListener("load", fitWords);
+    var fitRaf = 0;
+    window.addEventListener("resize", function () {
+      cancelAnimationFrame(fitRaf);
+      fitRaf = requestAnimationFrame(fitWords);
+    });
+  }
+
   /* --- Proje ızgarası: kategori filtresi --- */
   var tdGrid = document.getElementById("tdGrid");
   var tabs = document.querySelector(".td-tabs");

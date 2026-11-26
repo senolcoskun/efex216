@@ -87,7 +87,7 @@
   font-family:"Roboto",sans-serif;font-weight:700;font-size:12vw;line-height:10.5vw;letter-spacing:-.4vw;
 }
 .td-words p{overflow:hidden;margin:-.16em 0 -.1em;padding:.16em 0 .1em}
-.td-words p span{display:block;transform:translateY(105%);transition:transform 1.1s var(--td-ease)}
+.td-words p span{display:block;white-space:nowrap;transform:translateY(105%);transition:transform 1.1s var(--td-ease)}
 .td-slide.active .td-words p span{transform:none}
 .td-slide.active .td-words p:nth-child(2) span{transition-delay:.12s}
 .td-slide.active .td-words p:nth-child(3) span{transition-delay:.24s}
